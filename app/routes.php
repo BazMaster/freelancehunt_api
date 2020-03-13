@@ -29,15 +29,6 @@ switch ($routeInfo[0]) {
 		]);
 
 		break;
-	case FastRoute\Dispatcher::METHOD_NOT_ALLOWED:
-		$allowedMethods = $routeInfo[1];
-
-		echo render('template', [
-			'title'		=> 'Ошибка 405',
-			'tpl'	=> '_405'
-		]);
-
-		break;
 	case FastRoute\Dispatcher::FOUND:
 		$handler = $routeInfo[1];
 		$vars = $routeInfo[2];

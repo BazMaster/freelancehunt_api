@@ -36,7 +36,7 @@
 				</a>
 			</div>
 			<div class="col-4 text-center site_name">
-				<strong>выборка открытых проектов</strong>
+				<strong><?= formatTitle($title) ?></strong>
 			</div>
 			<div class="col-4 d-flex justify-content-end align-items-center">
 
@@ -45,11 +45,15 @@
 		</div>
 	</header>
 
-	<main role="main" class="container p-4" id="app">
 
-		<ul>
-			<li v-for="(item, index) in people">{{ index + 1 }}. {{ item }}</li>
-		</ul>
+	<main role="main" class="container p-4">
+		<?php echo render($tpl); ?>
+
+		<div id="app">
+			<ul>
+				<li v-for="(item, index) in people">{{ index + 1 }}. {{ item }}</li>
+			</ul>
+		</div>
 	</main>
 
 </div>
@@ -57,7 +61,7 @@
 <footer>
 	<p>&copy; FreelanceHunt выборка <?= date('Y') ?></p>
 	<p>
-		Created by <a href="https://github.com/BazMaster/todoplan" target="_blank">@BazMaster</a>
+		Created by <a href="https://github.com/BazMaster/freelancehunt_api" target="_blank">@BazMaster</a>
 	</p>
 </footer>
 

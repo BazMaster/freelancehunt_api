@@ -2,13 +2,13 @@
 
 /* These are helper functions */
 
-function render($template,$vars = array()){
-	
+function render($template,$vars = array()){	;
+
 	// This function takes the name of a template and
 	// a list of variables, and renders it.
 	
 	// This will create variables from the array:
-	extract($vars);
+	extract($vars, null, null);
 	
 	// It can also take an array of objects
 	// instead of a template name.
@@ -24,13 +24,15 @@ function render($template,$vars = array()){
 			$cl = strtolower(get_class($k));
 			$$cl = $k;
 			
-			return include __DIR__ . "/views/_$cl.php";
+			return include __DIR__ . '/views/_' . $cl . '.php';
 		}
 		
 	}
 	else {
 		if(!empty($template)) {
-			return include __DIR__ . "/views/$template.php";
+			$tpl = include __DIR__ . '/views/' . $template . '.php';
+			$tpl = substr($tpl, 0, -1);
+			return $tpl;
 		}
 	}
 	return true;
@@ -38,12 +40,6 @@ function render($template,$vars = array()){
 
 // Helper function for title formatting:
 function formatTitle($title = ''){
-	if($title){
-		$title.= ' | ';
-	}
-	
-	$title .= $GLOBALS['defaultTitle'];
-	
 	return $title;
 }
 
