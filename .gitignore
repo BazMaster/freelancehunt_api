@@ -1,0 +1,10 @@
+.idea
+/vendor
+node_modules
+composer.lock
+yarn.lock
+package-lock.json
+/files
+/public/Nginx_1.14_vhost.conf
+*.log
+.phpunit.result.cache
