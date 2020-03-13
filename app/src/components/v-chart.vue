@@ -19,7 +19,7 @@
             return {
                 chartDataHeader: ['Категория', 'Количество'],
                 chartDataRows: [],
-                url: 'http://freelancehunt.loc/stat',
+                url: '/stat',
                 chartOptions: {
                     chart: {
                         title: 'По ценам',

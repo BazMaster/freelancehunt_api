@@ -39,8 +39,6 @@ class ProjectController
 
 		$output = json_encode($projects, true);
 
-		header('Access-Control-Allow-Origin: *');
-		header('Content-Type: application/json');
 		return $output;
 	}
 
@@ -69,8 +67,6 @@ class ProjectController
 
 		$output = json_encode($array, true);
 
-		header('Access-Control-Allow-Origin: *');
-		header('Content-Type: application/json');
 		return $output;
 	}
 
@@ -106,8 +102,7 @@ class ProjectController
 //		return 'Вывод массива';
 
 		$output = json_encode($result, true);
-		header('Access-Control-Allow-Origin: *');
-		header('Content-Type: application/json');
+
 		return $output;
 	}
 

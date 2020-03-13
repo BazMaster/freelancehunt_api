@@ -2,41 +2,45 @@
 
 
 use PHPUnit\Framework\TestCase;
+use App\Controllers\ProjectController;
 
 class ProjectTest extends TestCase
 {
 
-	private $user;
+	private $project;
+
 
 	protected function setUp(): void
 	{
-		$this->user = new \App\Controllers\User();
-		$this->user->setAge(33);
+		$this->project = new ProjectController();
 	}
 
 	protected function tearDown(): void
 	{
-
+        $this->project = NULL;
 	}
 
-//	/**
-//	 * @dataProvider userProvider
-//	 */
-//	public function testAge($age) {
-//		$this->assertEquals($age,$this->user->getAge());
-//	}
-//
-//	public function userProvider() {
-//		return [
-//			'one' => [1],
-//			'two' => [2],
-//			'correct' => [33],
-//		];
-//	}
+    public function testListJson()
+    {
+        $json = ProjectController::listJsonAction();
+        $this->assertJson($json);
+    }
 
-	public function testEmailException() {
-		$this->expectException(\http\Exception\InvalidArgumentException::class);
-		$this->user->getEmail();
-	}
+    public function testSkillsJson()
+    {
+        $json = ProjectController::skillsJsonAction();
+        $this->assertJson($json);
+    }
+    public function testStatJson()
+    {
+        $json = ProjectController::statJsonAction();
+        $this->assertJson($json);
+    }
+
+    public function testImport()
+    {
+        $result = ProjectController::importProjects();
+        $this->assertEquals('', $result);
+    }
 
 }
