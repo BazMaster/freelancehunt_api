@@ -48,7 +48,7 @@
 
 <style scoped>
     .page-item.active .page-link {
-        background-color: #00ae5a;
-        border-color: #00ae5a;
+        background-color: #00ae5a !important;
+        border-color: #00ae5a !important;
     }
 </style>

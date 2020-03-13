@@ -3,7 +3,7 @@
 
       <div class="container">
           <div class="row">
-              <div class="col-lg-2 col-md-3 pt-md-4">
+              <div class="col-lg-3 col-md-3 pt-md-4">
                   <h3>Категории</h3>
                   <Navigation
                       @skill-changed="fetchProjects(1, $event)"
@@ -11,11 +11,11 @@
 
                   <hr>
 
-                  <h4>По ценам:</h4>
+                  <h5>По ценам:</h5>
                   <Chart></Chart>
 
               </div>
-              <div class="col-lg-10 col-md-9 py-md-3 pb-5 mb-5">
+              <div class="col-lg-9 col-md-9 py-md-3 pb-5 mb-5">
                   <h1>{{ title }}</h1>
                   <hr>
                   <Pagination
