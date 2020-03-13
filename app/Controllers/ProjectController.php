@@ -58,9 +58,12 @@ class ProjectController
 		$skills = $entityManager->getRepository('\App\Models\Project')
 			->getAllSkills($_GET['get']);
 
+		$array['all'] = $entityManager->getRepository('\App\Models\Project')
+            ->getAllProjects(1, 0, null, 'count(p.id)')[0][1];
+
 		foreach($skills as $index => $skill) {
-			$array[$index]['title'] = $skill;
-			$array[$index]['count'] = $entityManager->getRepository('\App\Models\Project')
+			$array['skills'][$index]['title'] = $skill;
+			$array['skills'][$index]['count'] = $entityManager->getRepository('\App\Models\Project')
 				->getAllProjects(1, 0, $skill, 'count(p.id)')[0][1];
 		}
 
@@ -89,9 +92,10 @@ class ProjectController
 		];
 
 		$index = 0;
+		$result = $arr = [];
 		foreach($array as $key => $where) {
-			$result[$index]['title'] = $key;
-			$result[$index]['count'] = $entityManager->getRepository('\App\Models\Project')
+			$result[$index][] = $key;
+			$result[$index][] = (int) $entityManager->getRepository('\App\Models\Project')
 				->getAllProjects(1, 0, null, 'count(p.id)', $where)[0][1];
 			$index++;
 		}
@@ -101,7 +105,7 @@ class ProjectController
 //		print '</pre></code>';
 //		return 'Вывод массива';
 
-		$output = json_encode($array, true);
+		$output = json_encode($result, true);
 		header('Access-Control-Allow-Origin: *');
 		header('Content-Type: application/json');
 		return $output;

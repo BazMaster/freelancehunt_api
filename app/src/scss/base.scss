@@ -1,14 +1,18 @@
 @import "bootstrap";
 @import "~animate.css/animate.css";
-@import "~toastr/build/toastr.css";
 $bg-color: white;
 body {
     background: $bg-color;
+
+    a, .text-green {
+        color: #00ae5a;
+    }
+
     &>.container {
         box-shadow: 0 0 5px #ccc;
         padding: 0;
         header {
-            border-bottom: 3px solid #3f7bc2;
+            border-bottom: 5px solid #00ae5a;
             .logo {
                 img {
                     height: 50px;
@@ -16,7 +20,7 @@ body {
                 }
                 div {
                     font-weight: bold;
-                    color: #3f7bc2;
+                    color: #00ae5a;
                     font-size: 28px;
                     display: inline-block;
                     margin-top: 5px;

@@ -2,7 +2,7 @@ const path = require('path');
     // const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 module.exports = {
     mode: 'production',
@@ -15,13 +15,31 @@ module.exports = {
 
     module: {
         rules: [
-
             {
                 test: /\.scss$/,
                 use: [
-                    MiniCssExtractPlugin.loader,
+                    'vue-style-loader',
                     'css-loader',
                     'sass-loader'
+                ]
+            },
+            {
+                test: /\.vue$/,
+                loader: 'vue-loader'
+            },
+            {
+                test: /\.js$/,
+                loader: 'babel-loader',
+                exclude: file => (
+                    /node_modules/.test(file) &&
+                    !/\.vue\.js/.test(file)
+                )
+            },
+            {
+                test: /\.css$/,
+                use: [
+                    'vue-style-loader',
+                    'css-loader'
                 ]
             }
         ]
@@ -35,16 +53,8 @@ module.exports = {
             $: 'jquery',
             jQuery: 'jquery',
             'window.jQuery': 'jquery'
-        })
-        // ,
-        // new OptimizeCssAssetsPlugin({
-        //     assetNameRegExp: /\.css$/g,
-        //     cssProcessor: require('cssnano'),
-        //     cssProcessorPluginOptions: {
-        //         preset: ['default', { discardComments: { removeAll: true } }],
-        //     },
-        //     canPrint: true
-        // })
+        }),
+        new VueLoaderPlugin()
     ]
 
 
