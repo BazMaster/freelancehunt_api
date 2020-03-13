@@ -2,10 +2,7 @@
 namespace App\Controllers;
 
 use App\Models\Project;
-use Doctrine\ORM\EntityManager;
-use Doctrine\ORM\Query\ResultSetMapping;
 use Doctrine\ORM\Query\ResultSetMappingBuilder;
-use Doctrine\ORM\QueryBuilder;
 
 class ProjectController
 {
@@ -22,6 +19,7 @@ class ProjectController
 	}
 
 	/**
+	 * For /list
 	 * @return false|string
 	 */
 	public static function listJsonAction()
@@ -47,6 +45,7 @@ class ProjectController
 	}
 
 	/**
+	 * For /skills
 	 * @return false|string
 	 */
 	public static function skillsJsonAction()
@@ -73,6 +72,7 @@ class ProjectController
 	}
 
 	/**
+	 * For /stat
 	 * @return false|string
 	 */
 	public static function statJsonAction()
@@ -80,21 +80,26 @@ class ProjectController
 		require __DIR__ . '/../../config/config.php';
 		require __DIR__ . '/../../config/connect.php';
 
-		$array = [];
+		$array = [
+			'до 500 грн' => 'p.budget < 500',
+			'500-1000 грн' => 'p.budget >= 500 AND p.budget < 1000',
+			'1000-5000 грн' => 'p.budget >= 1000 AND p.budget < 5000',
+			'5000-10000 грн' => 'p.budget >= 5000 AND p.budget < 10000',
+			'более 10000 грн' => 'p.budget > 10000',
+		];
 
-		$skills = $entityManager->getRepository('\App\Models\Project')
-			->getAllSkills($_GET['get']);
-
-		foreach($skills as $index => $skill) {
-			$array[$index]['title'] = $skill;
-			$array[$index]['count'] = $entityManager->getRepository('\App\Models\Project')
-				->getAllProjects(1, 0, $skill, 'count(p.id)')[0][1];
+		$index = 0;
+		foreach($array as $key => $where) {
+			$result[$index]['title'] = $key;
+			$result[$index]['count'] = $entityManager->getRepository('\App\Models\Project')
+				->getAllProjects(1, 0, null, 'count(p.id)', $where)[0][1];
+			$index++;
 		}
 
 //		print '<code><pre>';
-//		print_r($array);
+//		print_r($result);
 //		print '</pre></code>';
-//		return $defaultTitle;
+//		return 'Вывод массива';
 
 		$output = json_encode($array, true);
 		header('Access-Control-Allow-Origin: *');

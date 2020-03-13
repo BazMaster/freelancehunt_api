@@ -7,7 +7,7 @@ use Doctrine\ORM\EntityRepository;
 
 class ProjectRepository extends EntityRepository
 {
-	public function getAllProjects($page = 1, $limit = 10, $skill = null, $select = 'p') {
+	public function getAllProjects($page = 1, $limit = 10, $skill = null, $select = 'p', $where = null) {
 		$first = $page * $limit - $limit;
 		$qb = $this->_em->createQueryBuilder();
 		$qb
@@ -19,6 +19,11 @@ class ProjectRepository extends EntityRepository
 			$qb
 				->where('p.skills LIKE :like')
 				->setParameter('like','%'. $skill . '%')
+			;
+		}
+		if($where !== null) {
+			$qb
+				->where($where)
 			;
 		}
 		if($page > 0) {
