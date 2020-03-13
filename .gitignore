@@ -1,6 +1,4 @@
-.idea
 /vendor
-node_modules
 composer.lock
 yarn.lock
 package-lock.json
@@ -8,3 +6,15 @@ package-lock.json
 /public/Nginx_1.14_vhost.conf
 *.log
 .phpunit.result.cache
+
+.DS_Store
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Editor directories and files
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln

@@ -49,11 +49,7 @@
 	<main role="main" class="container p-4">
 		<?php echo render($tpl); ?>
 
-		<div id="app">
-			<ul>
-				<li v-for="(item, index) in people">{{ index + 1 }}. {{ item }}</li>
-			</ul>
-		</div>
+		<div id="app"></div>
 	</main>
 
 </div>
@@ -66,14 +62,5 @@
 </footer>
 
 <script src="/assets/js/main.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<script>
-    new Vue({
-        el: '#app',
-	    data: {
-            title: 'hello'
-	    }
-    });
-</script>
 </body>
 </html>

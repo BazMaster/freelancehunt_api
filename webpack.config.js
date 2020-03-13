@@ -1,8 +1,8 @@
-const path = require('path')
+const path = require('path');
     // const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const webpack = require('webpack')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+const webpack = require('webpack');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = {
     mode: 'production',
@@ -24,38 +24,6 @@ module.exports = {
                     'sass-loader'
                 ]
             }
-
-            // {
-            //     test: /\.(scss)$/,
-            //     use: [{
-            //         loader: 'style-loader', // inject CSS to page
-            //     }, {
-            //         loader: 'css-loader', // translates CSS into CommonJS modules
-            //     }, {
-            //         loader: 'postcss-loader', // Run postcss actions
-            //         options: {
-            //             plugins: function() { // postcss plugins, can be exported to postcss.config.js
-            //                 return [
-            //                     require('autoprefixer')
-            //                 ];
-            //             }
-            //         }
-            //     }, {
-            //         loader: 'sass-loader' // compiles Sass to CSS
-            //     }]
-            // }
-
-            // {
-            //     test: /\.s[ac]ss$/i,
-            //     use: ExtractTextPlugin.extract({
-            //         fallback: 'style-loader',
-            //         use: ['css-loader', 'sass-loader']
-            //     })
-            // },
-            // {
-            //     test: /\.css$/,
-            //     use: ['style-loader', 'css-loader']
-            // }
         ]
     },
 
@@ -80,4 +48,4 @@ module.exports = {
     ]
 
 
-}
+};

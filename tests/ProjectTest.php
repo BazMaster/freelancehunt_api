@@ -3,7 +3,7 @@
 
 use PHPUnit\Framework\TestCase;
 
-class UserTest extends TestCase
+class ProjectTest extends TestCase
 {
 
 	private $user;
